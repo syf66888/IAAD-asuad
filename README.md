@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ## Dataset Preparation
 
-You can ether download the preprocessed data in [this site](https://www.alipan.com/s/PYmo89r86RJ), or just download the raw videos and car information in [this site](https://pan.baidu.com/s/1do8NaAx_09UD2SVUL6LC4g?pwd=5aki), and preprocess it with the code in `src/prepro`.
+You can ether download the preprocessed data in [this site](https://www.alipan.com/s/PYmo89r86RJ), or just download the raw videos and car information in [this site](https://pan.baidu.com/s/1JPB9f7h4fzmXATYWamBn8w?pwd=5h2r), and preprocess it with the code in `src/prepro`.
 ```
 sh src/prepro pre.sh
 sh src/prepro test.sh
