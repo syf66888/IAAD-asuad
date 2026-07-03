@@ -109,6 +109,26 @@ class SharedConfigs(object):
         parser.add_argument("--signal_types", metavar='str', nargs='+', default=['course'],
                             choices=['course', 'speed', 'accelerator', 'curvature'], 
                             help="Control Signal type")
+        parser.add_argument("--optical_flow_source", default='lk', type=str,
+                            choices=['none', 'off', 'lk', 'my', 'sea-raft', 'sea_raft', 'searaft'],
+                            help="Optical flow source: none disables flow, lk/my uses the existing sparse LK flow, "
+                                 "sea-raft uses an external SEA-RAFT checkout.")
+        parser.add_argument("--optical_flow_cache", type=str_to_bool, nargs='?', const=True, default=True,
+                            help="Cache per-video optical flow features during training/evaluation.")
+        parser.add_argument("--optical_flow_input_normalized", type=str_to_bool, nargs='?', const=True, default=True,
+                            help="Set true when img_feats are ImageNet-normalized RGB frames.")
+        parser.add_argument("--sea_raft_repo", default='', type=str,
+                            help="Path to the SEA-RAFT repository root, required for --optical_flow_source sea-raft.")
+        parser.add_argument("--sea_raft_cfg", default='', type=str,
+                            help="SEA-RAFT JSON config path, unless --sea_raft_url is used.")
+        parser.add_argument("--sea_raft_checkpoint", default='', type=str,
+                            help="SEA-RAFT checkpoint path, unless --sea_raft_url is used.")
+        parser.add_argument("--sea_raft_url", default='', type=str,
+                            help="Optional pretrained SEA-RAFT URL/id supported by SEA-RAFT's from_pretrained API.")
+        parser.add_argument("--sea_raft_iters", default=4, type=int,
+                            help="Number of SEA-RAFT refinement iterations.")
+        parser.add_argument("--yolo_weights", default='yolov5s.pt', type=str,
+                            help="YOLOv5 weights used for region-token fusion.")
         parser.add_argument("--unique_labels_on", type=str_to_bool, nargs='?', const=True, default=False,
                             help="Use unique labels only.")
         parser.add_argument("--no_sort_by_conf", type=str_to_bool, nargs='?', const=True, default=False,
@@ -430,4 +450,3 @@ def restore_training_settings(args):
         args.max_seq_length = train_args.max_gen_length
         args.max_seq_a_length = train_args.max_gen_length
     return args
-

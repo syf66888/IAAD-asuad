@@ -14,6 +14,11 @@ import cv2
 import torchvision.transforms.functional as F
 import sys
 import numpy as np
+from src.modeling.optical_flow import (
+    FLOW_FEATURE_DIM,
+    build_optical_flow_extractor,
+    normalize_optical_flow_source,
+)
 
 
 class VideoTransformer(torch.nn.Module):
@@ -38,7 +43,9 @@ class VideoTransformer(torch.nn.Module):
         self.img_feature_dim = int(args.img_feature_dim)
         self.use_grid_feat = args.grid_feat
         self.latent_feat_size = self.swin.backbone.norm.normalized_shape[0]
-        self.fc = torch.nn.Linear(self.latent_feat_size+4, self.img_feature_dim)
+        self.optical_flow_source = normalize_optical_flow_source(getattr(args, 'optical_flow_source', 'lk'))
+        self.flow_feature_dim = 0 if self.optical_flow_source == 'none' else FLOW_FEATURE_DIM
+        self.fc = torch.nn.Linear(self.latent_feat_size + self.flow_feature_dim, self.img_feature_dim)
         self.compute_mask_on_the_fly = False  # deprecated
         self.mask_prob = args.mask_prob
         self.mask_token_id = -1
@@ -58,7 +65,7 @@ class VideoTransformer(torch.nn.Module):
             self.learn_vid_att = torch.nn.Embedding(args.max_img_seq_length * args.max_img_seq_length, 1)
             self.sigmoid = torch.nn.Sigmoid()
 
-        self.yolo_model = DetectMultiBackend(weights='yolov5s.pt')
+        self.yolo_model = DetectMultiBackend(weights=getattr(args, 'yolo_weights', 'yolov5s.pt'))
         self.yolo_model.eval()
         for param in self.yolo_model.parameters():
             param.requires_grad = False
@@ -66,7 +73,8 @@ class VideoTransformer(torch.nn.Module):
 
         # 光流缓存
         self.optical_flow_cache = {}  # 缓存光流数据
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device(getattr(args, 'device', 'cuda') if torch.cuda.is_available() else "cpu")
+        self.flow_extractor = build_optical_flow_extractor(args, device=self.device)
 
     def _compute_single_optical_flow(self, images):
         """计算单个视频的光流（x均值、y均值、幅度均值、平均角度）"""
@@ -130,18 +138,9 @@ class VideoTransformer(torch.nn.Module):
 
     def compute_optical_flow(self, images, car_info_batch):
         """计算多维度光流特征（BATCH处理）"""
-        B, C, S, H, W = images.shape
-        optical_flow_feats = torch.zeros((B, S - 1, 4), device=self.device)  # 调整为4维特征
-        for b in range(B):
-            single_car_info = car_info_batch[b].item()
-            if single_car_info in self.optical_flow_cache:
-                optical_flow_feats[b] = self.optical_flow_cache[single_car_info]
-            else:
-                single_images = images[b].unsqueeze(0)
-                computed_flow = self._compute_single_optical_flow(single_images)
-                self.optical_flow_cache[single_car_info] = computed_flow
-                optical_flow_feats[b] = computed_flow
-        return optical_flow_feats
+        if self.flow_extractor is None:
+            return None
+        return self.flow_extractor(images, cache_keys=car_info_batch)
 
 
 
@@ -245,13 +244,13 @@ class VideoTransformer(torch.nn.Module):
         # use an mlp to transform video token dimension
 
 
-        optical_flow_feats = optical_flow_feats.to(vid_feats.dtype)
         B1, M, latent = vid_feats.shape
-        padded_feats = torch.zeros(B, M, 4, device=optical_flow_feats.device,
-                                   dtype=optical_flow_feats.dtype)
-        padded_feats[:, :optical_flow_feats.size(1), :] = optical_flow_feats
-        fused_feats = torch.cat((vid_feats, padded_feats), dim=2)
-        vid_feats = fused_feats
+        if optical_flow_feats is not None:
+            optical_flow_feats = optical_flow_feats.to(device=vid_feats.device, dtype=vid_feats.dtype)
+            padded_feats = torch.zeros(B, M, self.flow_feature_dim, device=vid_feats.device,
+                                       dtype=vid_feats.dtype)
+            padded_feats[:, :optical_flow_feats.size(1), :] = optical_flow_feats
+            vid_feats = torch.cat((vid_feats, padded_feats), dim=2)
 
         # use an mlp to transform video token dimension
         vid_feats = self.fc(vid_feats)

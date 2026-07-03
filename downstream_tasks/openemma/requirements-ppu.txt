@@ -1,0 +1,9 @@
+accelerate>=0.34.2
+matplotlib>=3.7.0
+numpy<2
+nuscenes-devkit>=1.1.11
+opencv-python-headless==4.10.0.84
+openai>=1.40.0
+pyquaternion>=0.9.9
+qwen-vl-utils>=0.0.8
+transformers==4.46.3

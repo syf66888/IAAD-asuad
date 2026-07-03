@@ -14,11 +14,10 @@ This repository contains the training and testing of the proposed framework in p
 
 ## Note
 This reposity will be updated soon, including:
-- [] Uploading the **[Preprocessed Data](#dataset-preparation)** of dataset.
 - [x] Uploading the **Raw Data** of IAAD.
-- [] Uploading the **Visualization Codes** of raw data and results.
 - [x] Updating the **Experiment Codes** to make it easier to get up with.
 - [x] Uploading the **[Conda Environments](#1-installation-as-conda)** of ASU-AD.
+- [] Uploading the tiny version of ASU-AD.
 
 
 
@@ -68,7 +67,7 @@ pip install -r requirements.txt
 
 ## Dataset Preparation
 
-You can ether download the preprocessed data in [this site](https://www.alipan.com/s/PYmo89r86RJ), or just download the raw videos and car information in [this site](https://pan.baidu.com/s/1do8NaAx_09UD2SVUL6LC4g?pwd=5aki), and preprocess it with the code in `src/prepro`.
+You can ether download the preprocessed data in [this site](https://www.alipan.com/s/PYmo89r86RJ), or just download the raw videos and car information in [this site](https://pan.baidu.com/s/1JPB9f7h4fzmXATYWamBn8w?pwd=5h2r), and preprocess it with the code in `src/prepro`.
 ```
 sh src/prepro pre.sh
 sh src/prepro test.sh
@@ -117,3 +116,6 @@ If you find these works helpful, please consider citing them as well.
 
 [FAIR/FairScale](https://github.com/facebookresearch/fairscale)
 
+[TACO-Group/OpenEMMA](https://github.com/taco-group/OpenEMMA)
+
+[princeton/SEA-RAFT](https://github.com/princeton-vl/SEA-RAFT)
