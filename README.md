@@ -18,6 +18,7 @@ This reposity will be updated soon, including:
 - [x] Updating the **Experiment Codes** to make it easier to get up with.
 - [x] Uploading the **[Conda Environments](#1-installation-as-conda)** of ASU-AD.
 - [] Uploading the tiny version of ASU-AD.
+- [] Uploading dataset annotation.
 
 
 
