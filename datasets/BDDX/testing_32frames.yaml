@@ -1,0 +1,6 @@
+preextracted_frames: true
+img: frame_tsv/testing_32frames_img_size256.img.tsv
+label: testing.label.tsv
+caption: testing.caption.tsv
+caption_linelist: testing.caption.linelist.tsv
+caption_coco_format: testing_32frames_caption_coco_format.json

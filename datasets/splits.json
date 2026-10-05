@@ -1,0 +1,78 @@
+{
+  "unit": "annotated video clips",
+  "split_status": "Existing preprocessed experiment splits; unchanged",
+  "archived_experiments_used": [
+    "train",
+    "test"
+  ],
+  "validation_included": true,
+  "raw_media_included": false,
+  "datasets": {
+    "BDDX": {
+      "splits": {
+        "train": {
+          "samples": 21143,
+          "filename_prefix": "training",
+          "annotations": "BDDX/training_32frames_caption_coco_format.json",
+          "description_references": "BDDX_des/training_32frames_caption_coco_format.json",
+          "explanation_references": "BDDX_exp/training_32frames_caption_coco_format.json"
+        },
+        "val": {
+          "samples": 2519,
+          "filename_prefix": "validation",
+          "annotations": "BDDX/validation_32frames_caption_coco_format.json",
+          "description_references": "BDDX_des/validation_32frames_caption_coco_format.json",
+          "explanation_references": "BDDX_exp/validation_32frames_caption_coco_format.json"
+        },
+        "test": {
+          "samples": 2859,
+          "filename_prefix": "testing",
+          "annotations": "BDDX/testing_32frames_caption_coco_format.json",
+          "description_references": "BDDX_des/testing_32frames_caption_coco_format.json",
+          "explanation_references": "BDDX_exp/testing_32frames_caption_coco_format.json"
+        }
+      },
+      "total_samples": 26521,
+      "split_ids": "BDDX/split_ids.json",
+      "sample_id_overlap": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "description": "Driving action and explanation"
+    },
+    "MMAU": {
+      "splits": {
+        "train": {
+          "samples": 6654,
+          "filename_prefix": "training",
+          "annotations": "MMAU/training_32frames_caption_coco_format.json",
+          "description_references": "MMAU_des/training_32frames_caption_coco_format.json",
+          "explanation_references": "MMAU_exp/training_32frames_caption_coco_format.json"
+        },
+        "val": {
+          "samples": 833,
+          "filename_prefix": "validation",
+          "annotations": "MMAU/validation_32frames_caption_coco_format.json",
+          "description_references": "MMAU_des/validation_32frames_caption_coco_format.json",
+          "explanation_references": "MMAU_exp/validation_32frames_caption_coco_format.json"
+        },
+        "test": {
+          "samples": 831,
+          "filename_prefix": "testing",
+          "annotations": "MMAU/testing_32frames_caption_coco_format.json",
+          "description_references": "MMAU_des/testing_32frames_caption_coco_format.json",
+          "explanation_references": "MMAU_exp/testing_32frames_caption_coco_format.json"
+        }
+      },
+      "total_samples": 8318,
+      "split_ids": "MMAU/split_ids.json",
+      "sample_id_overlap": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "description": "Accident description and prevention advice; preprocessed MM-AU subset"
+    }
+  }
+}

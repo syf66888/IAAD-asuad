@@ -1,0 +1,26 @@
+# RTX 4090 environment: Python 3.8.20. Install CUDA PyTorch first.
+numpy==1.24.2
+opencv-python==4.7.0.72
+PyYAML==6.0
+einops==0.6.0
+easydict==1.10
+tensorboardX==2.6
+addict==2.4.0
+yapf==0.32.0
+pillow==10.4.0
+packaging==21.3
+requests==2.32.3
+boto3==1.26.94
+psutil==5.9.4
+h5py==3.8.0
+scikit-learn==1.3.2
+scipy==1.9.1
+pandas==2.0.3
+Deprecated==1.2.13
+tqdm==4.67.1
+ultralytics==8.4.153
+six==1.16.0
+future==0.18.3
+setuptools==56.0.0
+av==10.0.0
+protobuf==3.20.3

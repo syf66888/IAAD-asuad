@@ -1,0 +1,6 @@
+preextracted_frames: true
+img: frame_tsv/training_32frames_img_size256.img.tsv
+label: training.label.tsv
+caption: training.caption.tsv
+caption_linelist: training.caption.linelist.tsv
+caption_coco_format: training_32frames_caption_coco_format.json

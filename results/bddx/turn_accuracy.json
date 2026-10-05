@@ -1,0 +1,127 @@
+{
+  "dataset": "BDDX",
+  "scope": "Description agreement with annotated action",
+  "total_samples": 2859,
+  "turning_accuracy": 0.8651685393258427,
+  "explicit_turns": {
+    "reference": 178,
+    "correct": 154,
+    "accuracy": 0.8651685393258427,
+    "accuracy_percent": 86.51685393258427,
+    "outcomes": {
+      "correct": 154,
+      "lane_substitution_other": 1,
+      "lane_substitution_same_direction": 2,
+      "omitted_turn": 20,
+      "opposite_direction": 1
+    },
+    "per_direction": {
+      "left": {
+        "reference": 79,
+        "correct": 70,
+        "accuracy": 0.8860759493670886,
+        "accuracy_percent": 88.60759493670885,
+        "outcomes": {
+          "correct": 70,
+          "omitted_turn": 9
+        }
+      },
+      "right": {
+        "reference": 99,
+        "correct": 84,
+        "accuracy": 0.8484848484848485,
+        "accuracy_percent": 84.84848484848484,
+        "outcomes": {
+          "correct": 84,
+          "lane_substitution_other": 1,
+          "lane_substitution_same_direction": 2,
+          "omitted_turn": 11,
+          "opposite_direction": 1
+        }
+      }
+    }
+  },
+  "broad_steering": {
+    "reference": 343,
+    "correct": 214,
+    "accuracy": 0.6239067055393586,
+    "accuracy_percent": 62.390670553935855,
+    "outcomes": {
+      "correct": 214,
+      "lane_substitution_other": 11,
+      "lane_substitution_same_direction": 34,
+      "omitted_turn": 81,
+      "opposite_direction": 3
+    },
+    "per_direction": {
+      "left": {
+        "reference": 172,
+        "correct": 103,
+        "accuracy": 0.5988372093023255,
+        "accuracy_percent": 59.883720930232556,
+        "outcomes": {
+          "correct": 103,
+          "lane_substitution_other": 5,
+          "lane_substitution_same_direction": 24,
+          "omitted_turn": 40
+        },
+        "predicted": 145,
+        "precision": 0.7103448275862069,
+        "recall": 0.5988372093023255,
+        "f1": 0.6498422712933754
+      },
+      "right": {
+        "reference": 171,
+        "correct": 111,
+        "accuracy": 0.6491228070175439,
+        "accuracy_percent": 64.91228070175438,
+        "outcomes": {
+          "correct": 111,
+          "lane_substitution_other": 6,
+          "lane_substitution_same_direction": 10,
+          "omitted_turn": 41,
+          "opposite_direction": 3
+        },
+        "predicted": 162,
+        "precision": 0.6851851851851852,
+        "recall": 0.6491228070175439,
+        "f1": 0.6666666666666666
+      }
+    },
+    "predicted": 307,
+    "recall": 0.6239067055393586,
+    "precision": 0.6970684039087948,
+    "direction_accuracy_given_both_turn": 0.9861751152073732,
+    "macro_f1": 0.6582544689800209
+  },
+  "reference_label_counts": {
+    "none": 2262,
+    "turn_right": 171,
+    "turn_left": 172,
+    "lane_right": 49,
+    "lane_left": 59,
+    "ambiguous": 14,
+    "ambiguous_right": 31,
+    "lane": 9,
+    "correction_right": 2,
+    "position_right": 24,
+    "position_left": 23,
+    "ambiguous_left": 25,
+    "correction_left": 12,
+    "planned_right": 3,
+    "uturn": 3
+  },
+  "predicted_label_counts": {
+    "none": 2345,
+    "turn_right": 162,
+    "turn_left": 145,
+    "lane_left": 90,
+    "lane_right": 87,
+    "ambiguous_right": 11,
+    "correction_right": 1,
+    "ambiguous_left": 10,
+    "correction_left": 5,
+    "position_right": 2,
+    "ambiguous": 1
+  }
+}

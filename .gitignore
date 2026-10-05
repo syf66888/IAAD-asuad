@@ -1,0 +1,29 @@
+# Trained / pretrained tensors stay in the separate cloud-drive bundle.
+weights/
+checkpoints/
+initialization/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.ckpt
+outputs/
+.runtime/
+*.log
+events.out.tfevents.*
+__pycache__/
+*.py[cod]
+.venv*/
+.idea/
+.vscode/
+.DS_Store
+# Raw media, frame TSVs, and optical-flow caches are supplied separately.
+*.tsv
+*.lineidx
+*.npz
+*.npy
+*.mp4
+*.avi
+*.gz
+datasets/**/lk_flow_cache/

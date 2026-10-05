@@ -1,0 +1,11 @@
+{
+  "dataset": "MMAU",
+  "model": "best model",
+  "predictions": "testing_predictions.json",
+  "metrics": "metrics.json",
+  "fields": {
+    "image_id": "Video clip identifier",
+    "description": "Generated description",
+    "explanation": "Generated explanation or prevention advice"
+  }
+}

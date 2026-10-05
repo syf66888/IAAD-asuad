@@ -1,0 +1,6 @@
+preextracted_frames: true
+img: frame_tsv/validation_32frames_img_size256.img.tsv
+label: validation.label.tsv
+caption: validation.caption.tsv
+caption_linelist: validation.caption.linelist.tsv
+caption_coco_format: validation_32frames_caption_coco_format.json
